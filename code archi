@@ -1,0 +1,65 @@
+#include <stdio.h>
+#include <string.h>
+#include<stdlib.h>
+// CodeOperateur utilise cette convention connard
+
+int CodeOperateur(char* ch){
+    if (strcmp(ch,"add") == 0) return 0;
+    if (strcmp(ch,"sub") == 0) return 1; 
+    if (strcmp(ch,"mul") == 0) return 2;
+    if (strcmp(ch,"div") == 0) return 3;
+    if (strcmp(ch,"and") == 0) return 4;
+    if (strcmp(ch,"or") == 0) return 5;
+    if (strcmp(ch,"xor") == 0) return 6;
+    if (strcmp(ch,"shl") == 0) return 7;
+    if (strcmp(ch,"ldb") == 0) return 10;
+    if (strcmp(ch,"ldw") == 0) return 11;
+    if (strcmp(ch,"stb") == 0) return 12;
+    if (strcmp(ch,"stw") == 0) return 13;
+    if (strcmp(ch,"jmp") == 0) return 20;
+    if (strcmp(ch,"jzs") == 0) return 21;
+    if (strcmp(ch,"jzc") == 0) return 22;
+    if (strcmp(ch,"jcs") == 0) return 23;
+    if (strcmp(ch,"jcc") == 0) return 24;
+    if (strcmp(ch,"jns") == 0) return 25;
+    if (strcmp(ch,"jnc") == 0) return 26;
+    if (strcmp(ch,"in") == 0) return 27;
+    if (strcmp(ch,"out") == 0) return 28;
+    if (strcmp(ch,"rnd") == 0) return 29;
+    if (strcmp(ch,"hlt") == 0) return 31;
+    return -1;
+}
+
+int RegistreDestination(char rd[]){
+    int valeur;
+    if (rd[0] != 'r'){
+        printf("Erreur : La chaîne doit commencer par 'r'\n");
+       return -1;
+    }
+
+    if(strlen(rd)>=3){
+        return -1;
+    }
+
+    char num[3];
+    strncpy(num, rd+1, 2);
+    num[2] ='\0';
+    valeur = atoi(num); 
+
+     if ((valeur >= 0 && valeur <= 7) || (valeur >= 10 && valeur <= 13) || (valeur >= 20 && valeur <= 29) || valeur == 31) {
+        return valeur;
+    } 
+
+    return -1;
+}
+
+void 
+
+int main(){
+    int Registre[32];
+    int Memoire[65536];
+    for (int i=0; i<32; i++){
+        Registre[i]=i;
+    }
+    printf("%d",RegistreDestination("r215"));
+}
