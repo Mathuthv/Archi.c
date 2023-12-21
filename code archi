@@ -93,4 +93,5 @@ int main(int argc,char *argcv[]){
 		}
     fclose();
     printf("%d",RegistreDestination("r7"));
+    return 0;
 }
